@@ -15,3 +15,9 @@ https://github.com/secfit/iptables/blob/main/lab_1.md
 ### Lab_2
 #### Interact with SSH packet using iptables and tcpdump
 https://github.com/secfit/iptables/blob/main/lab_2.md
+<br>
+<br>
+<br>
+### Lab_3
+#### Interact with Brute Force Attack using iptables
+https://github.com/secfit/iptables/blob/main/lab_3.md
