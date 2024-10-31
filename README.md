@@ -18,7 +18,6 @@ This project aims to investigate the features of the Linux firewall, iptables, i
 |6| `ping -c 4 192.168.1.20` | `tcpdump -icmp -n -i any host 192.168.1.10` |
 |7| 						 | change the rules order : <br>`-A INPUT -m state --state NEW,ESTABLISHED,RELATED -p icmp --icmp-type any -s 192.168.1.10 -d 192.168.1.20 -j ACCEPT` <br>`-A INPUT -m state --state NEW,ESTABLISHED,RELATED -p icmp --icmp-type any -j REJECT` |
 |8| 						 | configure iptables Log on ICMP packets <br>
-
 ****Enable Logging in Iptables****<br>
 Add this expression in the end of iptables rule `-j LOG --log-level 4`<br>
 <br>
