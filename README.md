@@ -8,4 +8,4 @@ This project aims to investigate the features of the Linux firewall, iptables, i
 
 ### Lab_1
 #### Interact with linux ping packet using iptables and tcpdump
-[https://github.com/secfit/iptables/blob/main/lab_1.md]
+https://github.com/secfit/iptables/blob/main/lab_1.md
