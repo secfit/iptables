@@ -11,4 +11,4 @@ This project aims to investigate the features of the Linux firewall, iptables, i
 | Step | Host A (192.168.1.10) | Host B (192.168.1.20) |
 | --- | --- | --- |
 |1| `ping -c 4 192.168.1.20` | `tcpdump -icmp -n -i any host 192.168.1.10` |
-|2| 						 | Restrict incoming ICMP packets from **192.168.1.20**\n `-A INPUT -m state --state NEW,ESTABLISHED,RELATED -p icmp --icmp-type any -s 192.168.1.10 -d 192.168.1.20 -j REJECT` |
+|2| 						 | Restrict incoming ICMP packets from **192.168.1.20**\n <br>`-A INPUT -m state --state NEW,ESTABLISHED,RELATED -p icmp --icmp-type any -s 192.168.1.10 -d 192.168.1.20 -j REJECT` |
