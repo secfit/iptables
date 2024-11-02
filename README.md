@@ -21,3 +21,15 @@ https://github.com/secfit/iptables/blob/main/lab_2.md
 ### Lab_3
 #### Interact with Brute Force Attack using iptables
 https://github.com/secfit/iptables/blob/main/lab_3.md
+
+#### Testing environment : Kali Linux
+Install the following packages : 
+
+      
+          iptables
+          tcpdump
+          nano
+          telnet
+          ssh
+          rsyslog
+          
