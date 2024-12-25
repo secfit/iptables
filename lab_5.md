@@ -24,6 +24,7 @@
 |7||Forward incomming connection from ip:192.168.1.10 port:2202 to ip:192.168.1.30 port:22 : <br><br>`-A PREROUTING -d 192.168.1.20 -p tcp -m tcp --dport 2202 -j DNAT --to-destination 192.168.1.30:22`||
 |8| | Allow incomming connection from ip:192.168.1.10 port:1102 <br>`iptables -A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 1102 -s 192.168.1.10 -j ACCEPT` ||
 |9| | Allow incomming connection from ip:192.168.1.10 port:22 <br>`iptables -A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 22 -s 192.168.1.10 -j ACCEPT` ||
-|9| | Allow incomming connection from ip:192.168.1.10 port:2202 <br>`iptables -A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 2202 -s 192.168.1.10 -j ACCEPT` ||
-|9| | |Allow incomming connection from ip:192.168.1.20 port:22 <br>`-A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 22 -s 192.168.1.20 -j ACCEPT` |
-|5|Test routing connection:<br><br>On the first console : <br>`tcpdump -i any -Snn host 192.168.1.20 or host 192.168.1.30`<br>|`tcpdump -i any -Snn host 192.168.1.10 or host 192.168.1.30`|`tcpdump -i any -Snn host 192.168.1.10 or host 192.168.1.20`|
+|10| | Allow incomming connection from ip:192.168.1.10 port:2202 <br>`iptables -A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 2202 -s 192.168.1.10 -j ACCEPT` ||
+|11| | |Allow incomming connection from ip:192.168.1.20 port:22 <br>`-A RH-Firewall-1-INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 22 -s 192.168.1.20 -j ACCEPT` |
+|12|Test routing connection:<br><br>On the first console : <br>`tcpdump -i any -Snn host 192.168.1.20 or host 192.168.1.30`<br>|`tcpdump -i any -Snn host 192.168.1.10 or host 192.168.1.30`|`tcpdump -i any -Snn host 192.168.1.10 or host 192.168.1.20`|
+|13|On the second console : <br>`telnet 192.168.1.20 2202`|||
