@@ -13,6 +13,8 @@
 -  Obfuscate destination port *22*<br>
 -  The connection from <b>Host A</b> to <b>Host B</b> via port <b>2202</b> will be redirected to <b>Host C</b> to port <b>22</b>
 
+![iptables_reverse_proxy](iptables_reverse_proxy.png)
+
 | Steps | Host A (192.168.1.10) | Host B (192.168.1.20) | Host C (192.168.1.30) |
 | --- | --- | --- | --- |
 |1|Enable IP Forwarding : <br>`echo 1 > /proc/sys/net/ipv4/ip_forward`|||
