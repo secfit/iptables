@@ -19,8 +19,8 @@
 
 | Steps | Host A (192.168.1.10) | Host B (192.168.1.20) | Host C (192.168.1.30) |
 | --- | --- | --- | --- |
-|1|Enable IP Forwarding : <br>`echo 1 > /proc/sys/net/ipv4/ip_forward`|||
-|2||Enable IP Forwarding : <br>`echo 1 > /proc/sys/net/ipv4/ip_forward`||
+|1|Enable IP Forwarding : <br>`echo 1 > /proc/sys/net/ipv4/ip_forward`<br><br>or by *sysctl*:<br>`sysctl net.ipv4.ip_forward=1`|||
+|2||Enable IP Forwarding : <br>`echo 1 > /proc/sys/net/ipv4/ip_forward`<br><br>or by *sysctl*:<br>`sysctl net.ipv4.ip_forward=1`||
 |3|Test before applying *POSTROUTING* rule:<br><br>On the first console : <br>`tcpdump -i any -Snn dst port 2022`<br><br>On the second console : <br>`telnet 192.168.1.20 2202`|||
 |4|Change the source port of connections from port:<b>2202</b> to port:<b>1102</b>:<br>`iptables -t nat -A POSTROUTING -p tcp -m state --state NEW,ESTABLISHED,RELATED -m tcp --dport 2202 -j SNAT --to :1102` | | |
 |5|Retest after applying *POSTROUTING* rule:<br><br>On the first console : <br>`tcpdump -i any -Snn dst port 2022`<br><br>On the second console : <br>`telnet 192.168.1.20 2202`|||
