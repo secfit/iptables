@@ -20,9 +20,78 @@
 |4||Allow incomming connection from ip:192.168.1.10 port:80 <br>`iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 80 -s 192.168.1.10 -j ACCEPT`||
 |5|||Allow incomming connection from ip:192.168.1.10 port:80 <br>`iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 80 -s 192.168.1.10 -j ACCEPT`|
 
+<br><br>
 #### Case 1 : Random balancing
 | Steps | Front _ Host A (192.168.1.10) | Back _ Host B (192.168.1.20) | Back _ Host C (192.168.1.30) |
 | --- | --- | --- | --- |
 |1|for Back Host B :<br>`iptables -A PREROUTING -t nat -p tcp -d 192.168.1.10 --dport 80 -m statistic --mode random --probability 0.5 -j DNAT --to-destination 192.168.1.20:80`<br>|||
 |2|for Back Host C :<br>`iptables -A PREROUTING -t nat -p tcp -d 192.168.1.10 --dport 80 -m statistic --mode random --probability 0.5 -j DNAT --to-destination 192.168.1.30:80`<br>|||
 |3|Explanation : <br>With a probability of 0.5, the first rule will be executed 50% of the time and skipped 50% of the time.<br>You can calculte probability using this formula:<br><br>`p = 1/(n-i+1)`<br>where:<br>p = Probality<br> n = Number of nodes (in this example n = 2)<br> i = index, mean if the first node then i = 1, for second i = 2|||
+
+<br><br>
+#### Case 2 : Round Robin
+| Steps | Front _ Host A (192.168.1.10) | Back _ Host B (192.168.1.20) | Back _ Host C (192.168.1.30) |
+| --- | --- | --- | --- |
+|1|for Back Host B :<br>`iptables -A PREROUTING -t nat -p tcp -d 192.168.1.10 --dport 80 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.1.20:80`<br>|||
+|2|for Back Host C :<br>`iptables -A PREROUTING -t nat -p tcp -d 192.168.1.10 --dport 80 -m statistic --mode nth --every 2 --packet 1 -j DNAT --to-destination 192.168.1.30:80`<br>|||
+
+
+
+<b>Explanation</b> : <br>We are using *nth* algorithm, this algorithm implements a round robin algorithm.<br>This algorithm takes two different parameters: every `n` and packet `p`.<br><br>Matching the Rule:<br>The first packet matches `--packet 0`, so it’s redirected to Backend Host 2.<br>The second packet matches `--packet 1`, so it’s redirected to Backend Host 3.
+<br><br>
+<b>How `--every` Works:</b> <br>
+
+The `--every` option determines the frequency of packets that match. The --packet option specifies the starting point in the sequence.<br>
+*Rule 1:*<br>
+    `--every 2`: Matches every 2nd packet.<br>
+    `--packet 0`: Matches the first packet in every two.<br>
+    Action: Redirects to 192.168.1.20:80.<br><br>
+
+*Rule 2:*<br>
+    `--every 2`: Matches every 2nd packet.<br>
+    `--packet 1`: Matches the second packet in every two.<br>
+    Action: Redirects to 192.168.1.30:80.<br><br>
+
+*Expected Behavior:*<br>
+    Requests alternate between the two backend servers:<br>
+       - First packet → 192.168.1.20:80.<br>
+       - Second packet → 192.168.1.30:80.<br>
+       - Third packet → 192.168.1.20:80.<br>
+       - Fourth packet → 192.168.1.30:80.<br>
+
+| `--every 2` | `--packet` | Destination server |
+| --- | --- | --- | 
+|1st Packet |0|192.168.1.20|
+|2nd Packet |1|192.168.1.30|
+|3rd Packet |0|192.168.1.20|
+|4th Packet |1|192.168.1.30|
+|5th Packet |0|192.168.1.20|
+|6th Packet |1|192.168.1.30|
+
+<table>
+    <thead>
+        <tr>
+            <th>Layer 1</th>
+            <th>Layer 2</th>
+            <th>Layer 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4>L1 Name</td>
+            <td rowspan=2>L2 Name A</td>
+            <td>L3 Name A</td>
+        </tr>
+        <tr>
+            <td>L3 Name B</td>
+        </tr>
+        <tr>
+            <td rowspan=2>L2 Name B</td>
+            <td>L3 Name C</td>
+        </tr>
+        <tr>
+            <td>L3 Name D</td>
+        </tr>
+    </tbody>
+</table>
+
