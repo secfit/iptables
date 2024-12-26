@@ -10,6 +10,7 @@
 -  Route TCP packets to the correct destication<br>
 -  Load balance connections across multiple servers<br>
 
+![iptables_loadbalancer](iptables_loadbalancer.drawio.png)
 
 ### 1- Prerequisite 
 #### Securing Front Host 
@@ -21,7 +22,7 @@
 |4||Allow incomming connection from ip:192.168.1.10 port:80 <br>`iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 80 -s 192.168.1.10 -j ACCEPT`||
 |5|||Allow incomming connection from ip:192.168.1.10 port:80 <br>`iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 80 -s 192.168.1.10 -j ACCEPT`|
 
-![iptables_loadbalancer](iptables_loadbalancer.drawio.png)
+
 
 <br><br>
 ### 2- Load Balancing
