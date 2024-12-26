@@ -3,7 +3,7 @@
   <h3 align="center">Iptables Lab 5</h3>
   <p align="center">Create Advanced Reverse Proxy with Port obfuscation<br>
 </div>
-
+![iptables_reverse_proxy](iptables_reverse_proxy.png)
 ## Lab Objectives : <br>
 -  Hide *Host A* to be visible from *Host C*<br>
 -  Hide *Host C* to be visible from *Host A*<br>
@@ -13,7 +13,7 @@
 -  Obfuscate destination port *22*<br>
 -  The connection from <b>Host A</b> to <b>Host B</b> via port <b>2202</b> will be redirected to <b>Host C</b> to port <b>22</b>
 
-![iptables_reverse_proxy](iptables_reverse_proxy.png)
+![iptables_proxy](iptables_proxy.png)
 
 | Steps | Host A (192.168.1.10) | Host B (192.168.1.20) | Host C (192.168.1.30) |
 | --- | --- | --- | --- |
