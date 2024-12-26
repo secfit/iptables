@@ -68,30 +68,48 @@ The `--every` option determines the frequency of packets that match. The --packe
 |5th Packet |0|192.168.1.20|
 |6th Packet |1|192.168.1.30|
 
-<table>
-    <thead>
-        <tr>
-            <th>Layer 1</th>
-            <th>Layer 2</th>
-            <th>Layer 3</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=4>L1 Name</td>
-            <td rowspan=2>L2 Name A</td>
-            <td>L3 Name A</td>
-        </tr>
-        <tr>
-            <td>L3 Name B</td>
-        </tr>
-        <tr>
-            <td rowspan=2>L2 Name B</td>
-            <td>L3 Name C</td>
-        </tr>
-        <tr>
-            <td>L3 Name D</td>
-        </tr>
-    </tbody>
+<table style="height: 119px; width: 502px;">
+<thead>
+<tr style="height: 18px;">
+<th style="height: 18px; width: 122.3px;">Phase</th>
+<th style="height: 18px; width: 98.8833px;">`--every 2`</th>
+<th style="height: 18px; width: 116.9px;">`--packet`</th>
+<th style="height: 18px; width: 135.917px;">Destination Host</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 18px;">
+<td style="height: 36px; width: 122.3px;" rowspan="2">every 2 packets</td>
+<td style="height: 18px; width: 98.8833px;">P_1</td>
+<td style="height: 18px; width: 116.9px;">0</td>
+<td style="height: 18px; width: 135.917px;">192.168.1.20</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 98.8833px;">P_2</td>
+<td style="height: 18px; width: 116.9px;">1</td>
+<td style="height: 18px; width: 135.917px;">192.168.1.30</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 29px; width: 122.3px;" rowspan="2">every 2 packets</td>
+<td style="height: 18px; width: 98.8833px;">P_3</td>
+<td style="height: 18px; width: 116.9px;">0</td>
+<td style="height: 18px; width: 135.917px;">192.168.1.20</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 11px; width: 98.8833px;">P_4</td>
+<td style="height: 11px; width: 116.9px;">1</td>
+<td style="height: 11px; width: 135.917px;">192.168.1.30</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 36px; width: 122.3px;" rowspan="2">every 2 packets</td>
+<td style="height: 18px; width: 98.8833px;">P_1</td>
+<td style="height: 18px; width: 116.9px;">0</td>
+<td style="height: 18px; width: 135.917px;">192.168.1.20</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 98.8833px;">P_2</td>
+<td style="height: 18px; width: 116.9px;">1</td>
+<td style="height: 18px; width: 135.917px;">192.168.1.30</td>
+</tr>
+</tbody>
 </table>
-
