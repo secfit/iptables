@@ -32,4 +32,4 @@ Install the following packages :
           telnet
           ssh
           rsyslog
-          
+          nc
