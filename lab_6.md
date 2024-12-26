@@ -10,7 +10,7 @@
 -  Route TCP packets to the correct destication<br>
 -  Load balance connections across multiple servers<br>
 
-### Prerequisite 
+### 1- Prerequisite 
 #### Securing Front Host 
 | Steps | Front _ Host A (192.168.1.10) | Back _ Host B (192.168.1.20) | Back _ Host C (192.168.1.30) |
 | --- | --- | --- | --- |
@@ -21,6 +21,7 @@
 |5|||Allow incomming connection from ip:192.168.1.10 port:80 <br>`iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED -m tcp -p tcp --dport 80 -s 192.168.1.10 -j ACCEPT`|
 
 <br><br>
+### 2- Load Balancing
 #### Case 1 : Random balancing
 | Steps | Front _ Host A (192.168.1.10) | Back _ Host B (192.168.1.20) | Back _ Host C (192.168.1.30) |
 | --- | --- | --- | --- |
@@ -113,3 +114,11 @@ The `--every` option determines the frequency of packets that match. The --packe
 </tr>
 </tbody>
 </table>
+
+### 3- Testing
+| Steps | Client host | Host A (192.168.1.10) | Host B (192.168.1.20) | Host C (192.168.1.30) |
+| --- | --- | --- | --- | --- |
+|1||`tcpdump -i any -Snn host 192.168.1.20 or host 192.168.1.30`|||
+|2|||`tcpdump -i any -Snn host 192.168.1.10`||
+|3||||`tcpdump -i any -Snn host 192.168.1.10`|
+|4|`nc -z -v 192.168.1.10 80`||||
