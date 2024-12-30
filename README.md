@@ -21,7 +21,24 @@ https://github.com/secfit/iptables/blob/main/lab_2.md
 ### Lab_3
 #### Interact with Brute Force Attack using iptables
 https://github.com/secfit/iptables/blob/main/lab_3.md
-
+<br>
+<br>
+<br>
+### Lab_4
+#### Create DMZ using NAT table
+https://github.com/secfit/iptables/blob/main/lab_4.md
+<br>
+<br>
+<br>
+### Lab_5
+#### Create Advanced Reverse Proxy with Port obfuscation
+https://github.com/secfit/iptables/blob/main/lab_5.md
+<br>
+<br>
+<br>
+### Lab_6
+#### Create Http Load Balancing using Iptables
+https://github.com/secfit/iptables/blob/main/lab_6.md
 #### Testing environment : Kali Linux
 Install the following packages : 
 
